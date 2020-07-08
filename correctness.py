@@ -1,6 +1,23 @@
 #!/usr/bin/env python3
 import subprocess
 
+def apply(__option__, __logging__):
+    """
+    Applies an action based on set.
+    If basic, verifies the basic rules.
+    If enterprise, verifies that.
+    If custom, verifies those rules.
+    Returns False or True based on success.
+    """
+    if __logging__ > 0:
+        __LOGGING__ == __logging__
+    if __option__ == "BASIC":
+        return verify_rule_set(__BASIC__)
+    if __option__ == "ENTERPRISE":
+        return verify_rule_set(__ENTERPRISE__)
+    if __option__ == "CUSTOM":
+        return verify_rule_set(__CUSTOM__)
+
 def execute_control(__controls__):
     """
     Accepts a set of verified rules.
@@ -106,7 +123,10 @@ def verify_rule_set(__ruleset__):
     """
     Accepts a ruleset.
     Output is that the rule passes or fails.
+    Returns False if one error detected.
+    Returns True if no errors detected.
     """
+    __result__ = True
     with open(__ruleset__, "r") as __rules__:
         for __line__ in __rules__:
             __set__ = parse_rule(__line__)
@@ -119,6 +139,7 @@ def verify_rule_set(__ruleset__):
                     else:
                         print(__set__['rule'] + ' passed.')
                 else:
+                    __result__ = False
                     if (__LOGGING__ > 1):
                         print('   ' + __set__['rule'] + ' failed.')
                     else:
@@ -128,6 +149,7 @@ def verify_rule_set(__ruleset__):
                             print("   " + verify_rules(__set__))
                         if (execute_control(__set__) == False):
                             print("   Result of verified rule is negative.")
+    return __result__
 
 def verify_rules(__rules__):
     """

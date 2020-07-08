@@ -1,4 +1,2 @@
 CIS 1.2.3;%/check;%//proc/sys/net/ipv4/conf/default/secure_redirects;%/1;%/match
-CIS 3.2.1;%/check;%//proc/sys/net/ipv6/conf/default/secure_redirects;%/1;%/match
 CIS 1.2.4;%/check;%//proc/sys/net/ipv4/conf/default/secure_redirects;%/1;%/match
-CIS 1.2.5;%/check;%//proc/sys/net/ipv4/conf/default/secure_redirects;%/0;%/match
