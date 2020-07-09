@@ -2,6 +2,8 @@
 from subprocess import Popen, PIPE
 import gi
 import correctness
+import threading
+import time
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('AppIndicator3', '0.1')
@@ -22,6 +24,10 @@ def change_status(__panel__, __change__, __file__):
 
 def update_panel(__panel__):
     if (correctness.apply("BASIC",3)):
+        change_status(__panel__,"0",__STATUSFILE__)
+    else:
+        change_status(__panel__,"1",__STATUSFILE__)
+    if (update_status(__STATUSFILE__) == "0"):
         __panel__.set_icon(gtk.STOCK_YES)
         __panel__.set_label(' Secured', '')
     else:
@@ -58,6 +64,7 @@ __exit__.connect("activate", quit)
 __exit__.show_all()
 
 # Run time
-glib.timeout_add(1, update_panel, __app__)
+#glib.timeout_add(1000, update_panel, __app__)
+update_panel(__app__)
 gtk.main()
 
