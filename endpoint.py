@@ -2,7 +2,7 @@
 from subprocess import Popen, PIPE
 import gi
 import correctness
-import threading
+import subprocess
 import time
 
 gi.require_version('Gtk', '3.0')
