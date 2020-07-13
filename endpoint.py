@@ -18,15 +18,8 @@ from gi.repository import Notify as notify
 def change_status(__panel__, __change__, __file__):
     __panel__.set_icon(gtk.STOCK_REFRESH)
     __panel__.set_label(' Updating ', '')
-    with open(__file__, "w") as __status__:
-        __status__.write(__change__)
-    __status__.close()
 
 def update_panel(__panel__):
-    if (correctness.apply("BASIC",3)):
-        change_status(__panel__,"0",__STATUSFILE__)
-    else:
-        change_status(__panel__,"1",__STATUSFILE__)
     if (update_status(__STATUSFILE__) == "0"):
         __panel__.set_icon(gtk.STOCK_YES)
         __panel__.set_label(' Secured', '')
