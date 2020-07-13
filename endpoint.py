@@ -20,7 +20,7 @@ def change_status(__panel__, __change__, __file__):
     __panel__.set_label(' Updating ', '')
 
 def update_panel(__panel__):
-    if (update_status(__STATUSFILE__) == "0"):
+    if (correctness.apply_rules("BASIC")):
         __panel__.set_icon(gtk.STOCK_YES)
         __panel__.set_label(' Secured', '')
     else:
@@ -58,6 +58,6 @@ __exit__.connect("activate", quit)
 __exit__.show_all()
 
 # Run time
-glib.timeout_add_seconds(50, update_panel, __app__)
+glib.timeout_add_seconds(5, update_panel, __app__)
 gtk.main()
 
