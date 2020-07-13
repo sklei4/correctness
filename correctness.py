@@ -18,6 +18,16 @@ def apply(__option__, __logging__):
     if __option__ == "CUSTOM":
         return verify_rule_set(__CUSTOM__)
 
+def daemon(__mode__, __seconds__, __log__):
+    """
+    Accepts a rule set mode.
+    Returns nothing.
+    Runs endless loop.
+    """
+    while True:
+        time.sleep(__seconds__)
+        correctness.apply(__mode__, __log__)
+
 def execute_control(__controls__):
     """
     Accepts a set of verified rules.
@@ -181,6 +191,7 @@ __CONFIGURATIONFILE__ = "correctness.config"
 __ENTERPRISE__ = "enterprise.rules"
 __BASIC__ = "basic.rules"
 __CUSTOM__ = "custom.rules"
-__LOGGING__ = 0
+__LOGGING__ = 3
 
-
+if __name__ == "__main__":
+    daemon(__BASIC__, 30, __LOGGING__)
