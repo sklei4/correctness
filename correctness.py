@@ -196,7 +196,7 @@ def verify_rules(__rules__):
 
 def write_log(__message__):
     with open(__LOGFILE__, "a") as __log__:
-        __log__.write(str(__message__))
+        __log__.write(str(__message__) + "\n")
         __log__.close()
 
 # Constants
