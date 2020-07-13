@@ -2,8 +2,8 @@
 from subprocess import Popen, PIPE
 import gi
 import correctness
-import subprocess
 import time
+import random
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('AppIndicator3', '0.1')
@@ -26,6 +26,7 @@ def update_panel(__panel__):
     else:
         __panel__.set_icon(gtk.STOCK_NO)
         __panel__.set_label(' Insecure', '')
+    return True # Seriously, this is a hack.
 
 def update_status(__file__):
     with open(__file__, "r") as __status__:
@@ -57,7 +58,6 @@ __exit__.connect("activate", quit)
 __exit__.show_all()
 
 # Run time
-#glib.timeout_add(1000, update_panel, __app__)
-update_panel(__app__)
+glib.timeout_add_seconds(50, update_panel, __app__)
 gtk.main()
 
